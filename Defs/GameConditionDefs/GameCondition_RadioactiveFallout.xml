@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <GameConditionDef>
+    <defName>RG_RadioactiveFallout</defName>
+    <label>радиоактивные осадки</label>
+    <description>Над картой проходят радиоактивные осадки. Находящиеся под открытым небом существа будут постепенно накапливать радиацию.</description>
+    <gameConditionClass>RG_RadiationFramework.GameCondition_RadioactiveFallout</gameConditionClass>
+    <conditionClass>GameConditionOnMap_Endless</conditionClass>
+    <displayOrder>260</displayOrder>
+    <canBePermanent>false</canBePermanent>
+    <letterText>Над поселением начались радиоактивные осадки. Не защищённые существа будут получать дозу радиации, особенно под открытым небом.</letterText>
+    <letterLabel>Радиоактивные осадки</letterLabel>
+  </GameConditionDef>
+</Defs>

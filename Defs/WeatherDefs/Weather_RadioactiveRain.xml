@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <WeatherDef>
+    <defName>RG_RadioactiveRain</defName>
+    <label>радиоактивный дождь</label>
+    <workerClass>WeatherWorker_Rain</workerClass>
+    <rainRate>1.0</rainRate>
+    <windSpeedFactor>1.05</windSpeedFactor>
+    <moveSpeedMultiplier>0.95</moveSpeedMultiplier>
+    <accuracyMultiplier>0.95</accuracyMultiplier>
+    <favorability>0</favorability>
+    <commonalityRainfallOffset>0.5</commonalityRainfallOffset>
+    <commonalityTemperatureRange>
+      <min>-100</min>
+      <max>80</max>
+    </commonalityTemperatureRange>
+    <overlayClasses>
+      <li>WeatherOverlay_Fallout</li>
+      <li>WeatherOverlay_Rain</li>
+    </overlayClasses>
+    <graphicData>
+      <texPath>Weather/Rain</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>Transparent</shaderType>
+      <color>(0.62,0.95,0.62,1.0)</color>
+    </graphicData>
+    <skyColors>
+      <sky>(0.55, 0.70, 0.55, 1)</sky>
+      <shadow>(0.62, 0.75, 0.62, 1)</shadow>
+      <overlay>(0.22, 0.55, 0.22, 1)</overlay>
+      <saturation>0.75</saturation>
+    </skyColors>
+    <soundAmbient>Rain_Ambience</soundAmbient>
+  </WeatherDef>
+</Defs>

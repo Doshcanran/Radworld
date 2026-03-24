@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <GameConditionDef>
+    <defName>RG_RadioactiveFallout</defName>
+    <label>радиоактивные осадки</label>
+    <description>Над картой проходят радиоактивные осадки. Находящиеся под открытым небом существа будут постепенно накапливать радиацию.</description>
+    <conditionClass>RG_RadiationFramework.GameCondition_RadioactiveFallout</conditionClass>
+  </GameConditionDef>
+
+</Defs>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <StatDef>
+    <defName>RG_AccumulatedRadiation</defName>
+    <label>накопленная радиация</label>
+    <description>Текущий уровень накопленной радиации в организме.</description>
+    <category>RG_Radiation</category>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <workerClass>RG_RadiationFramework.StatWorker_AccumulatedRadiation</workerClass>
+    <showNonAbstract>true</showNonAbstract>
+    <displayPriorityInCategory>1</displayPriorityInCategory>
+    <minValue>0</minValue>
+  </StatDef>
+
+  <StatDef>
+    <defName>RG_RadiationProtection</defName>
+    <label>защита от радиации</label>
+    <description>Снижение входящей радиации за счет экипировки и эффектов.</description>
+    <category>RG_Radiation</category>
+    <toStringStyle>PercentZero</toStringStyle>
+    <defaultBaseValue>0</defaultBaseValue>
+    <showNonAbstract>true</showNonAbstract>
+    <displayPriorityInCategory>2</displayPriorityInCategory>
+    <minValue>0</minValue>
+    <maxValue>0.95</maxValue>
+  </StatDef>
+
+  <StatDef>
+    <defName>RG_EmittedRadiation</defName>
+    <label>излучаемая радиация</label>
+    <description>Радиация, которую существо испускает в окружающее пространство.</description>
+    <category>RG_Radiation</category>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <defaultBaseValue>0</defaultBaseValue>
+    <showNonAbstract>true</showNonAbstract>
+    <displayPriorityInCategory>3</displayPriorityInCategory>
+    <minValue>0</minValue>
+  </StatDef>
+
+  <StatDef>
+    <defName>RG_RadiationResistance</defName>
+    <label>естественное сопротивление радиации</label>
+    <description>Природная устойчивость организма к радиации.</description>
+    <category>RG_Radiation</category>
+    <toStringStyle>PercentZero</toStringStyle>
+    <defaultBaseValue>0.05</defaultBaseValue>
+    <showNonAbstract>true</showNonAbstract>
+    <displayPriorityInCategory>4</displayPriorityInCategory>
+    <minValue>0</minValue>
+    <maxValue>0.95</maxValue>
+  </StatDef>
+</Defs>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <IncidentDef>
+    <defName>RG_RadioactiveFallout</defName>
+    <label>радиоактивные осадки</label>
+    <workerClass>RG_RadiationFramework.IncidentWorker_RadioactiveFallout</workerClass>
+    <category>ThreatSmall</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <baseChance>0.35</baseChance>
+    <earliestDay>4</earliestDay>
+    <minRefireDays>8</minRefireDays>
+    <letterLabel>Радиоактивные осадки</letterLabel>
+    <letterText>Фронт радиоактивного дождя подходит к вашей карте. Укройте колонистов и животных.</letterText>
+    <letterDef>NegativeEvent</letterDef>
+  </IncidentDef>
+</Defs>
