@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- СОПРОТИВЛЕНИЕ РАДИАЦИИ
+       Рассчитывается из покрытия тела одеждой.
+       Полностью одетая пешка = 50%. Максимум = 90%.
+       Блокирует соответствующий % получаемой радиации. -->
+  <StatDef>
+    <defName>RAD_RadiationResistance</defName>
+    <label>radiation resistance</label>
+    <description>How well this creature is protected from radiation. Calculated from worn apparel coverage. A fully dressed pawn gains 50% resistance. Maximum resistance is 90%.\n\nHigher values reduce the rate at which radiation accumulates during radioactive rain.</description>
+    <category>Radiation</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <maxValue>90</maxValue>
+    <!-- Отображаем как целое число процентов: "42%" -->
+    <toStringStyle>PercentZero</toStringStyle>
+    <showOnAnimals>true</showOnAnimals>
+    <showOnHumanlikes>true</showOnHumanlikes>
+    <showOnMechanoids>false</showOnMechanoids>
+    <showIfUndefined>true</showIfUndefined>
+    <workerClass>RadiationMod.StatWorker_RadiationPawn</workerClass>
+  </StatDef>
+
+  <!-- НАКОПЛЕННАЯ РАДИАЦИЯ
+       Хранится в MapComponent_RadiationRain.
+       0 = нет радиации, 100 = летальная доза. -->
+  <StatDef>
+    <defName>RAD_AccumulatedRadiation</defName>
+    <label>accumulated radiation</label>
+    <description>The total amount of radiation absorbed by this creature's body. At 100 units the dose becomes lethal.\n\nRadiation accumulates during radioactive rain when outdoors. Wearing clothing reduces the accumulation rate.</description>
+    <category>Radiation</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <maxValue>100</maxValue>
+    <toStringStyle>FloatOne</toStringStyle>
+    <showOnAnimals>true</showOnAnimals>
+    <showOnHumanlikes>true</showOnHumanlikes>
+    <showOnMechanoids>false</showOnMechanoids>
+    <showIfUndefined>true</showIfUndefined>
+    <workerClass>RadiationMod.StatWorker_RadiationPawn</workerClass>
+  </StatDef>
+
+  <!-- ИЗЛУЧАЕМАЯ РАДИАЦИЯ
+       Заглушка — будет подключена позже. -->
+  <StatDef>
+    <defName>RAD_EmittedRadiation</defName>
+    <label>emitted radiation</label>
+    <description>The amount of radiation this creature emits into its surroundings.</description>
+    <category>Radiation</category>
+    <defaultBaseValue>0</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatOne</toStringStyle>
+    <showOnAnimals>true</showOnAnimals>
+    <showOnHumanlikes>true</showOnHumanlikes>
+    <showOnMechanoids>true</showOnMechanoids>
+    <showIfUndefined>true</showIfUndefined>
+    <workerClass>RadiationMod.StatWorker_RadiationPawn</workerClass>
+  </StatDef>
+
+</Defs>

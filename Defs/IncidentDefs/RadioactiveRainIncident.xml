@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <IncidentDef>
+    <defName>RAD_IncidentRadioactiveRain</defName>
+    <label>radioactive rain</label>
+    <category>Misc</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>IncidentWorker_MakeGameCondition</workerClass>
+    <gameCondition>RAD_RadioactiveRain</gameCondition>
+    <letterLabel>Radioactive rain</letterLabel>
+    <letterDef>ThreatSmall</letterDef>
+    <baseChance>1.5</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <durationDays>1~5</durationDays>
+  </IncidentDef>
+
+</Defs>

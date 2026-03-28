@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Категория статов для радиационной системы -->
+  <StatCategoryDef>
+    <defName>Radiation</defName>
+    <label>radiation</label>
+    <displayOrder>100</displayOrder>
+  </StatCategoryDef>
+
+</Defs>

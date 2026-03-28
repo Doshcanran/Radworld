@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>RadWorld</name>
+  <author>Doshcanran</author>
+  <packageId>DH.RadiationSystem</packageId>
+  <description>Adds a radiation system to RimWorld. Colonists and creatures have radiation resistance, accumulated radiation, and emitted radiation stats.</description>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+</ModMetaData>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <GameConditionDef>
+    <defName>RAD_RadioactiveRain</defName>
+    <label>radioactive rain</label>
+    <description>Radioactive particles are falling with the rain. Creatures exposed to the open sky will accumulate radiation in their bodies.</description>
+    <!-- Базовый GameCondition пока dll не скомпилирована.                           -->
+    <!-- После компиляции заменить на:                                               -->
+    <!-- <conditionClass>RadiationMod.GameCondition_RadioactiveRain</conditionClass> -->
+    <conditionClass>GameCondition</conditionClass>
+    <endMessage>The radioactive rain has stopped.</endMessage>
+    <letterText>Radioactive rain has begun falling over the colony.\n\nAny person or creature not under a roof will slowly accumulate radiation. Seek cover immediately.</letterText>
+    <letterDef>ThreatSmall</letterDef>
+    <canBePermanent>true</canBePermanent>
+    <allowUnderground>false</allowUnderground>
+  </GameConditionDef>
+
+</Defs>

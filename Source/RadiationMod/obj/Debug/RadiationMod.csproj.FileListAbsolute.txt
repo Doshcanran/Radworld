@@ -1,0 +1,10 @@
+C:\RimWorld\Mods\RadiationMod\Source\RadiationMod\obj\Debug\RadiationMod.csproj.AssemblyReference.cache
+C:\RimWorld\Mods\RadiationMod\Source\RadiationMod\obj\Debug\RadiationMod.GeneratedMSBuildEditorConfig.editorconfig
+C:\RimWorld\Mods\RadiationMod\Source\RadiationMod\obj\Debug\RadiationMod.AssemblyInfoInputs.cache
+C:\RimWorld\Mods\RadiationMod\Source\RadiationMod\obj\Debug\RadiationMod.AssemblyInfo.cs
+C:\RimWorld\Mods\RadiationMod\Source\RadiationMod\obj\Debug\RadiationMod.csproj.CoreCompileInputs.cache
+C:\RimWorld\Mods\RadiationMod\Assemblies\RadiationMod.dll
+C:\RimWorld\Mods\RadiationMod\Assemblies\RadiationMod.pdb
+C:\RimWorld\Mods\RadiationMod\Source\RadiationMod\obj\Debug\RadiationMod.dll
+C:\RimWorld\Mods\RadiationMod\Source\RadiationMod\obj\Debug\RadiationMod.pdb
+C:\RimWorld\Mods\RadiationMod\Source\RadiationMod\obj\Debug\RadiationMod.csproj.CopyComplete

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <HediffDef>
+    <defName>RAD_RadiationSickness</defName>
+    <label>radiation exposure</label>
+    <labelNoun>radiation sickness</labelNoun>
+    <description>Ionizing radiation has penetrated the body, damaging cells and organs. Higher doses cause progressively more severe symptoms, up to lethal radiation sickness.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 1.0, 0.6)</defaultLabelColor>
+    <isBad>true</isBad>
+    <makesSickThought>true</makesSickThought>
+    <lethalSeverity>1.0</lethalSeverity>
+    <comps>
+      <!-- Severity не падает сама по себе — управляется из C# на основе накопленной радиации -->
+      <li Class="HediffCompProperties_SurgeryInspectable">
+        <surgicalDetectionDesc>{PAWN_nameDef} shows signs of radiation exposure. Radiation has accumulated in the body tissues.</surgicalDetectionDesc>
+      </li>
+    </comps>
+    <stages>
+
+      <!-- Стадия 0: невидимая, пока severity почти нулевая -->
+      <li>
+        <label>none</label>
+        <minSeverity>0.0</minSeverity>
+        <becomeVisible>false</becomeVisible>
+      </li>
+
+      <!-- Стадия 1: Лёгкое облучение (severity 0.05–0.25) -->
+      <li>
+        <label>mild exposure</label>
+        <minSeverity>0.05</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.03</offset>
+          </li>
+        </capMods>
+      </li>
+
+      <!-- Стадия 2: Среднее облучение (severity 0.25–0.55) -->
+      <li>
+        <label>moderate exposure</label>
+        <minSeverity>0.25</minSeverity>
+        <vomitMtbDays>4</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.08</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.10</offset>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>365</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+        </hediffGivers>
+      </li>
+
+      <!-- Стадия 3: Тяжёлое облучение (severity 0.55–0.80) -->
+      <li>
+        <label>severe exposure</label>
+        <minSeverity>0.55</minSeverity>
+        <vomitMtbDays>1</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.18</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.25</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.15</offset>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>90</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+          <li Class="HediffGiver_Random">
+            <hediff>Dementia</hediff>
+            <mtbDays>180</mtbDays>
+            <partsToAffect>
+              <li>Brain</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
+      </li>
+
+      <!-- Стадия 4: Критическое — лучевая болезнь (severity 0.80–1.0) -->
+      <li>
+        <label>radiation sickness</label>
+        <minSeverity>0.80</minSeverity>
+        <vomitMtbDays>0.3</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.5</setMax>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.25</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.50</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.40</offset>
+          </li>
+        </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>20</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+          <li Class="HediffGiver_Random">
+            <hediff>Dementia</hediff>
+            <mtbDays>30</mtbDays>
+            <partsToAffect>
+              <li>Brain</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
+      </li>
+
+    </stages>
+  </HediffDef>
+
+</Defs>
