@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- === Uranium (ресурс) === -->
+
+  <!-- Создаём statBases только если его нет -->
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>Defs/ThingDef[defName="Uranium"]/statBases</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Uranium"]</xpath>
+        <value>
+          <statBases />
+        </value>
+      </li>
+    </operations>
+  </Operation>
+
+  <!-- Добавляем стат в statBases -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Uranium"]/statBases</xpath>
+    <value>
+      <RAD_EmittedRadiation>5</RAD_EmittedRadiation>
+    </value>
+  </Operation>
+
+  <!-- === MineableUranium (залежь руды) === -->
+
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>Defs/ThingDef[defName="MineableUranium"]/statBases</xpath>
+        <success>Invert</success>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="MineableUranium"]</xpath>
+        <value>
+          <statBases />
+        </value>
+      </li>
+    </operations>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="MineableUranium"]/statBases</xpath>
+    <value>
+      <RAD_EmittedRadiation>5</RAD_EmittedRadiation>
+    </value>
+  </Operation>
+
+</Patch>
