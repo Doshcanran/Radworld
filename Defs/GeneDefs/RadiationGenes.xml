@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ═══════════════════════════════════════════
+       КАТЕГОРИЯ
+  ═══════════════════════════════════════════ -->
+
+  <GeneCategoryDef>
+    <defName>RAD_RadiationAdaptation</defName>
+    <label>radiation adaptation</label>
+    <displayPriorityInXenotype>95</displayPriorityInXenotype>
+  </GeneCategoryDef>
+
+  <!-- ═══════════════════════════════════════════
+       ГЕН 1: Лёгкая защита (+20%)
+       Можно сочетать с другими генами.
+       Complexity 1 / Metabolism 0
+  ═══════════════════════════════════════════ -->
+
+  <GeneDef>
+    <defName>RAD_RadSkin_Weak</defName>
+    <label>radiation-resistant skin I</label>
+    <labelShortAdj>rad-resistant</labelShortAdj>
+    <description>Densely packed melanin clusters and thickened keratin layers deflect some ionizing radiation. Radiation resistance +20%.</description>
+    <iconPath>UI/Icons/Genes/Gene_PsychicSensitivity</iconPath>
+    <displayCategory>RAD_RadiationAdaptation</displayCategory>
+    <displayOrderInCategory>10</displayOrderInCategory>
+    <biostatCpx>1</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <exclusionTags><li>RAD_RadSkinLevel</li></exclusionTags>
+    <statOffsets>
+      <RAD_RadiationResistance>20</RAD_RadiationResistance>
+    </statOffsets>
+  </GeneDef>
+
+  <!-- ═══════════════════════════════════════════
+       ГЕН 2: Средняя защита (+40%)
+       Complexity 2 / Metabolism -1
+  ═══════════════════════════════════════════ -->
+
+  <GeneDef>
+    <defName>RAD_RadSkin_Medium</defName>
+    <label>radiation-resistant skin II</label>
+    <labelShortAdj>rad-shielded</labelShortAdj>
+    <description>Radiation-scattering proteins laced through tissues continuously counteract ionizing damage. Radiation resistance +40%.</description>
+    <iconPath>UI/Icons/Genes/Gene_PsychicSensitivity</iconPath>
+    <displayCategory>RAD_RadiationAdaptation</displayCategory>
+    <displayOrderInCategory>20</displayOrderInCategory>
+    <biostatCpx>2</biostatCpx>
+    <biostatMet>-1</biostatMet>
+    <exclusionTags><li>RAD_RadSkinLevel</li></exclusionTags>
+    <statOffsets>
+      <RAD_RadiationResistance>40</RAD_RadiationResistance>
+    </statOffsets>
+  </GeneDef>
+
+  <!-- ═══════════════════════════════════════════
+       ГЕН 3: Полная защита (+90%, макс стата)
+       Complexity 5 / Metabolism -3
+  ═══════════════════════════════════════════ -->
+
+  <GeneDef>
+    <defName>RAD_RadSkin_Full</defName>
+    <label>radiation immunity</label>
+    <labelShortAdj>rad-immune</labelShortAdj>
+    <description>Molecular repair complexes in every cell neutralize radiation damage almost instantly. Radiation resistance +90% — effectively immune to environmental radiation.</description>
+    <iconPath>UI/Icons/Genes/Gene_PsychicSensitivity</iconPath>
+    <displayCategory>RAD_RadiationAdaptation</displayCategory>
+    <displayOrderInCategory>30</displayOrderInCategory>
+    <biostatCpx>5</biostatCpx>
+    <biostatMet>-3</biostatMet>
+    <exclusionTags><li>RAD_RadSkinLevel</li></exclusionTags>
+    <statOffsets>
+      <RAD_RadiationResistance>90</RAD_RadiationResistance>
+    </statOffsets>
+  </GeneDef>
+
+  <!-- ═══════════════════════════════════════════
+       ГЕН 4: Быстрое выведение радиации
+       C#: -1.5 ед. радиации каждые 5 сек
+       Complexity 3 / Metabolism -2
+  ═══════════════════════════════════════════ -->
+
+  <GeneDef>
+    <defName>RAD_FastRadDecay</defName>
+    <label>accelerated rad clearance</label>
+    <labelShortAdj>rad-cleansing</labelShortAdj>
+    <description>Enhanced lymphatic and renal function rapidly filter radioactive particles. Accumulated radiation fades significantly faster than normal (~1.5 units per 5 seconds).</description>
+    <iconPath>UI/Icons/Genes/Gene_Deathrest</iconPath>
+    <displayCategory>RAD_RadiationAdaptation</displayCategory>
+    <displayOrderInCategory>40</displayOrderInCategory>
+    <biostatCpx>3</biostatCpx>
+    <biostatMet>-2</biostatMet>
+  </GeneDef>
+
+  <!-- ═══════════════════════════════════════════
+       ГЕН 5: Иммунитет к симптомам болезни
+       C#: severity hediff ×0.2
+       Complexity 4 / Metabolism -2
+  ═══════════════════════════════════════════ -->
+
+  <GeneDef>
+    <defName>RAD_RadSicknessImmunity</defName>
+    <label>radiation sickness immunity</label>
+    <labelShortAdj>sickness-immune</labelShortAdj>
+    <description>Unusual DNA repair pathways prevent radiation-induced cellular breakdown. Radiation still accumulates, but causes far less physical harm — symptoms of radiation sickness are reduced by 80%.</description>
+    <iconPath>UI/Icons/Genes/Gene_Immunity</iconPath>
+    <displayCategory>RAD_RadiationAdaptation</displayCategory>
+    <displayOrderInCategory>50</displayOrderInCategory>
+    <biostatCpx>4</biostatCpx>
+    <biostatMet>-2</biostatMet>
+  </GeneDef>
+
+  <!-- ═══════════════════════════════════════════
+       ГЕН 6 (НЕГАТИВНЫЙ): Радиационная чувствительность
+       Complexity -1 / Metabolism +1
+  ═══════════════════════════════════════════ -->
+
+  <GeneDef>
+    <defName>RAD_RadSensitivity</defName>
+    <label>radiation sensitivity</label>
+    <labelShortAdj>rad-sensitive</labelShortAdj>
+    <description>Thin skin and poor cellular repair make this individual highly susceptible to radiation. Radiation resistance -20%.</description>
+    <iconPath>UI/Icons/Genes/Gene_PsychicSensitivity</iconPath>
+    <displayCategory>RAD_RadiationAdaptation</displayCategory>
+    <displayOrderInCategory>60</displayOrderInCategory>
+    <biostatCpx>-1</biostatCpx>
+    <biostatMet>1</biostatMet>
+    <exclusionTags><li>RAD_RadSkinLevel</li></exclusionTags>
+    <statOffsets>
+      <RAD_RadiationResistance>-20</RAD_RadiationResistance>
+    </statOffsets>
+  </GeneDef>
+
+</Defs>

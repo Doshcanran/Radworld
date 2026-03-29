@@ -8,11 +8,10 @@ namespace RadiationMod
     {
         private Dictionary<int, float> accumulatedRadiation = new Dictionary<int, float>();
 
-        /// <summary>100 единиц радиации = смерть (severity 1.0).</summary>
         public const float MaxRadiation = 100f;
 
-        private const int TickInterval    = 120;   // начисляем каждые ~2 сек
-        private const int HediffInterval  = 300;   // обновляем hediff каждые ~5 сек
+        private const int TickInterval   = 120;
+        private const int HediffInterval = 300;
         private const float BaseRadPerInterval = 0.2f;
 
         public MapComponent_RadiationRain(Map map) : base(map) { }
@@ -34,21 +33,32 @@ namespace RadiationMod
             UpdateHediff(pawn);
         }
 
+        /// <summary>Средняя накопленная радиация среди пешек с ненулевым значением.</summary>
+        public float GetAverageRadiation()
+        {
+            if (accumulatedRadiation.Count == 0) return 0f;
+            float sum = 0f; int count = 0;
+            foreach (var kv in accumulatedRadiation)
+                if (kv.Value > 0.01f) { sum += kv.Value; count++; }
+            return count > 0 ? sum / count : 0f;
+        }
+
         // ── Тик ─────────────────────────────────────────────────────────────────
 
         public override void MapComponentTick()
         {
             int tick = Find.TickManager.TicksGame;
 
+            // Начисляем радиацию от дождя
             if (tick % TickInterval == 0 && IsRadioactiveRainActive())
             {
                 foreach (Pawn pawn in map.mapPawns.AllPawnsSpawned)
                 {
-                    if (pawn.Dead) continue;
-                    if (pawn.RaceProps.IsMechanoid) continue;
+                    if (pawn.Dead || pawn.RaceProps.IsMechanoid) continue;
+                    if (pawn.RaceProps.IsAnomalyEntity) continue;
                     if (map.roofGrid.Roofed(pawn.Position)) continue;
 
-                    float resistance = GetResistance(pawn);   // 0..0.9
+                    float resistance = GetResistance(pawn);
                     float gain = BaseRadPerInterval * (1f - resistance);
                     if (gain <= 0f) continue;
 
@@ -58,12 +68,23 @@ namespace RadiationMod
                 }
             }
 
+            // Обновляем hediff + выведение радиации генами
             if (tick % HediffInterval == 0)
             {
                 foreach (Pawn pawn in map.mapPawns.AllPawnsSpawned)
                 {
-                    if (pawn.Dead) continue;
-                    if (pawn.RaceProps.IsMechanoid) continue;
+                    if (pawn.Dead || pawn.RaceProps.IsMechanoid) continue;
+                    if (pawn.RaceProps.IsAnomalyEntity) continue;
+
+                    // Ген быстрого выведения: каждые 5 сек убираем 1.5 ед.
+                    if (GeneRadiationEffects.HasFastDecay(pawn))
+                    {
+                        float cur = GetAccumulatedRadiation(pawn);
+                        if (cur > 0f)
+                            accumulatedRadiation[pawn.thingIDNumber] =
+                                UnityEngine.Mathf.Max(0f, cur - GeneRadiationEffects.FastDecayRate);
+                    }
+
                     UpdateHediff(pawn);
                 }
             }
@@ -77,6 +98,10 @@ namespace RadiationMod
 
             float radiation = GetAccumulatedRadiation(pawn);
             float severity  = radiation / MaxRadiation;
+
+            // Ген иммунитета к болезни: severity видимая 80% меньше
+            if (GeneRadiationEffects.HasSicknessImmunity(pawn))
+                severity *= GeneRadiationEffects.SicknessImmunityFactor;
 
             HediffDef def = DefDatabase<HediffDef>.GetNamedSilentFail("RAD_RadiationSickness");
             if (def == null) return;
@@ -103,16 +128,10 @@ namespace RadiationMod
 
         // ── Resistance ───────────────────────────────────────────────────────────
 
-        /// <summary>
-        /// Возвращает сопротивление радиации в диапазоне [0..0.9].
-        /// Берёт значение стата RAD_RadiationResistance (0–90%) и нормализует.
-        /// StatWorker уже считает покрытие одеждой.
-        /// </summary>
         private static float GetResistance(Pawn pawn)
         {
             StatDef stat = DefDatabase<StatDef>.GetNamedSilentFail("RAD_RadiationResistance");
             if (stat == null) return 0f;
-            // Стат хранится в процентах (0–90), нормализуем в [0..0.9]
             float raw = pawn.GetStatValue(stat);
             return UnityEngine.Mathf.Clamp(raw / 100f, 0f, 0.9f);
         }
@@ -135,8 +154,7 @@ namespace RadiationMod
         {
             GameConditionDef def = DefDatabase<GameConditionDef>
                 .GetNamedSilentFail("RAD_RadioactiveRain");
-            if (def == null) return false;
-            return map.GameConditionManager.ConditionIsActive(def);
+            return def != null && map.GameConditionManager.ConditionIsActive(def);
         }
 
         public static MapComponent_RadiationRain GetForPawn(Pawn pawn)
